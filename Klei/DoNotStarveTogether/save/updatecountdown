@@ -1,0 +1,22 @@
+KLEI     1 {
+   "standalone":{
+      "update_day":"2",
+      "update_month":"12",
+      "update_year":"2014"
+   },
+   "steam":{
+      "update_day":"2",
+      "update_month":"12",
+      "update_year":"2014"
+   },
+   "rogsteam":{
+      "update_day":"2",
+      "update_month":"12",
+      "update_year":"2014"
+   },
+   "rogstandalone":{
+      "update_day":"2",
+      "update_month":"12",
+      "update_year":"2014"
+   }
+}

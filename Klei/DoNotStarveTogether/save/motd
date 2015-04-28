@@ -1,0 +1,32 @@
+KLEI     1 {
+   "standalone":{
+      "motd_title":"Don't Starve Together",
+      "motd_body":"The Multiplayer Expansion is Now Available on Steam Early-Access!",
+      "link_title":"Check it out",
+      "link_url":"http://store.steampowered.com/app/322330/"
+   },
+   "steam":{
+      "motd_title":"Don't Starve Together",
+      "motd_body":"The Multiplayer Expansion is Now Available on Steam Early-Access!",
+      "link_title":"Check it out",
+      "link_url":"http://store.steampowered.com/app/322330/"
+   },
+	"dststeam":{
+      "motd_title":"Don't Starve Figures!",
+      "motd_body":"Don't Starve collectable figures are available now in the Klei Store!",
+      "link_title":"Klei Store",
+      "link_url":"http://store.kleientertainment.com"
+   },
+   "rogsteam":{
+      "motd_title":"Don't Starve Together",
+      "motd_body":"The Multiplayer Expansion is Now Available on Steam Early-Access!",
+      "link_title":"Check it out",
+      "link_url":"http://store.steampowered.com/app/322330/"
+   },
+   "rogstandalone":{
+            "motd_title":"Don't Starve Together",
+      "motd_body":"The Multiplayer Expansion is Now Available on Steam Early-Access!",
+      "link_title":"Check it out",
+      "link_url":"http://store.steampowered.com/app/322330/"
+   }
+}
