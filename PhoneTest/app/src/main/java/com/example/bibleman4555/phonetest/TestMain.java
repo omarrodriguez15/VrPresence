@@ -1,5 +1,6 @@
 package com.example.bibleman4555.phonetest;
 
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,11 @@ public class TestMain extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_main);
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         Button btnStart = (Button)findViewById(R.id.up_button);
         btnStart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,8 +69,8 @@ public class TestMain extends ActionBarActivity{
         try {
             String messageStr = "0001";
             int server_port = 8888;
-            DatagramSocket s = new DatagramSocket();
-            InetAddress local = InetAddress.getByName("192.168.1.105");
+            DatagramSocket s = new DatagramSocket(server_port);
+            InetAddress local = InetAddress.getLocalHost();//InetAddress.getByName("192.168.1.105");
             int msg_length = messageStr.length();
             byte[] message = messageStr.getBytes();
             DatagramPacket p = new DatagramPacket(message, msg_length, local, server_port);

@@ -12,40 +12,40 @@
         android:text="Up"
         android:id="@+id/up_button"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
 
-        />
+        android:layout_toRightOf="@+id/left_button"
+        android:layout_toLeftOf="@+id/right_button"
+        android:layout_toStartOf="@+id/right_button" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Down"
         android:id="@+id/down_button"
-        android:layout_below="@+id/up_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
 
-        />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Left"
         android:id="@+id/left_button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:singleLine="false"
 
-        />
+        android:layout_alignTop="@+id/right_button"
+        android:layout_toLeftOf="@+id/down_button"
+        android:layout_toStartOf="@+id/down_button" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="right"
         android:id="@+id/right_button"
-        android:layout_marginTop="66dp"
-        android:layout_below="@+id/left_button"
 
-        />
+        android:layout_below="@+id/up_button"
+        android:layout_toRightOf="@+id/down_button"
+        android:layout_toEndOf="@+id/down_button"
+        android:layout_marginTop="55dp" />
 
 </RelativeLayout>
