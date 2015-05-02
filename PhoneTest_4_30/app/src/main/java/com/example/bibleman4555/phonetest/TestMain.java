@@ -42,6 +42,7 @@ public class TestMain extends ActionBarActivity  implements SensorEventListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_main);
+
         text1 = (EditText) findViewById(R.id.x_box);
         text2 = (EditText) findViewById(R.id.y_box);
         Button btnUp = (Button)findViewById(R.id.up_button);
@@ -62,8 +63,10 @@ public class TestMain extends ActionBarActivity  implements SensorEventListener{
                 new ATcommandThread().execute("left");
             }
         });
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
     }
 
 
@@ -93,50 +96,59 @@ public class TestMain extends ActionBarActivity  implements SensorEventListener{
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
-        String debug = String.format("x is %d", x);
-        Log.d(TAG, debug);
+
+        //Debug Info
+        if(event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR){
+            String log = String.format("x = %f y = %f z = %f",x, y, z);
+            Log.i(TAG,log);
+        }
+
+        //Set TextBox Values
+        String xVal = String.format("%f",x);
+        String yVal = String.format("%f",x);
+        text1.setText(xVal);
+        text2.setText(yVal);
+
+
         if(setinit == false){
             xini = x;
             yini = y;
             zini = z;
         }
-        if(x < xini){
+        if(x < (xini-.1)){
             left = true;
         }
-        if(x > xini){
+        if(x > (xini+.1) ){
             right = true;
         }
-        if(y < yini){
+        if(y < (yini-.1)){
             down = true;
         }
-        if(y > yini){
+        if(y > (yini+.1)){
             up = true;
         }
-        text1.setText((int)x);
-        text2.setText((int)y);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // TODO Auto-generated method stub
-    }
-    
-    static void sendToArduino(View v){
-        try {
+        if (sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+            Log.i(TAG, "is accuracy");
 
-            String messageStr = "0001";
-            int server_port = 8888;
-            DatagramSocket s = new DatagramSocket();
-            InetAddress local = InetAddress.getByName("192.168.1.101");
-            int msg_length = messageStr.length();
-            byte[] message = messageStr.getBytes();
-            DatagramPacket p = new DatagramPacket(message, msg_length, local, server_port);
-            s.send(p);
-        } catch (IOException s) {
-            Log.d(TAG, "someOtherMethod()", s);
-
+        } else {
+            Log.i(TAG, "is not accuracy");
         }
-
     }
 
 
