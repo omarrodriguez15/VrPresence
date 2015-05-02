@@ -14,7 +14,17 @@ public class ATcommandThread extends AsyncTask<String, Integer, Boolean> {
     protected Boolean doInBackground(String... arg0) {
         try {
 
-            String messageStr = "0001";
+            String messageStr = " ";
+            switch (arg0[0]){
+                case "up":messageStr = "1";
+                    break;
+                case "right":messageStr = "2";
+                    break;
+                case "left":messageStr = "3";
+                    break;
+                default:
+                    break;
+            }
             int server_port = 8888;
             DatagramSocket s = new DatagramSocket();
             InetAddress local = InetAddress.getByName("192.168.1.105");

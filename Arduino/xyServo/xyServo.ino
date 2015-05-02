@@ -74,10 +74,32 @@ void loop() {
     Udp.read(packetBuffer,UDP_TX_PACKET_MAX_SIZE);
     Serial.println("Contents:");
     Serial.println(packetBuffer);
-    if(packetBuffer == "0001"){
-      analogWrite(leftMotor, dynamicSpeed);
-      analogWrite(rightMotor, dynamicSpeed);
-    }
+    switch (packetBuffer[0]){
+          case '1'://forward
+            analogWrite(leftMotor, dynamicSpeed);
+            analogWrite(rightMotor, dynamicSpeed);
+            //digitalWrite(leftMotor, HIGH);
+            //digitalWrite(rightMotor, HIGH);
+            break;
+          case '2'://turn left or right
+            analogWrite(leftMotor, dynamicSpeed);
+            digitalWrite(rightMotor, LOW);
+            break;
+          case '3'://forward
+            digitalWrite(leftMotor, LOW);
+            analogWrite(rightMotor, dynamicSpeed);
+            break;
+          case '4'://backward
+            //TODO build HBRIDGE
+            break;
+          default://error stop anyways
+            digitalWrite(leftMotor, LOW);
+            digitalWrite(rightMotor, LOW);
+            break;
+     }
+    delay(100);
+    analogWrite(leftMotor, LOW);
+      analogWrite(rightMotor, LOW);
     
   }
   /*if(sizeof(packetBuffer) >= 5){
